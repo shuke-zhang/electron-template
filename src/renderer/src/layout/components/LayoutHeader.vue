@@ -44,7 +44,7 @@ function handleCommand(e: 'setting' | 'logout' | 'scale' | 'change-password') {
       </h3>
       <el-dropdown v-if="userStore.user" @command="handleCommand">
         <div class="flex items-center user-info">
-          <img class="avater" :src="userStore.avater" />
+          <img class="avater" :src="userStore.avater">
           <span style="margin-left: 10px;">{{ userStore.user?.userName?.toLocaleUpperCase() }}</span>
           <el-icon class="el-icon--right">
             <i-ep-arrow-down />
@@ -73,40 +73,39 @@ function handleCommand(e: 'setting' | 'logout' | 'scale' | 'change-password') {
 
 <style scoped lang="scss">
   // @import url('@/assets/styles/var.scss');
+.layout-header {
+  background: white;
+  position: sticky;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  animation-duration: 0.1s;
+}
 
-  .layout-header {
-    background: white;
-    position: sticky;
-    box-sizing: border-box;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 10;
-    animation-duration: 0.1s;
-  }
+.layout-header_inner {
+  height: var(--app-header-hight);
+  border-bottom: 1px solid #ebebeb;
+}
 
-  .layout-header_inner {
-    height: var(--app-header-hight);
-    border-bottom: 1px solid #ebebeb;
-  }
+.avater {
+  height: 50px;
+  width: 50px;
+  border-radius: 50px;
+}
 
-  .avater{
-    height: 50px;
-    width: 50px;
-    border-radius: 50px;
-  }
+.user-info:hover {
+  cursor: pointer;
+}
 
-  .user-info:hover{
-    cursor: pointer;
-  }
+h3 {
+  a {
+    text-decoration: none;
 
-  h3{
-    a{
-      text-decoration: none;
-
-      &:hover{
-        color: var(--el-color-primary);
-      }
+    &:hover {
+      color: var(--el-color-primary);
     }
   }
+}
 </style>

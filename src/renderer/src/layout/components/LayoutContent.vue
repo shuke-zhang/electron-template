@@ -9,7 +9,7 @@ router.beforeEach(() => {
   layout.value = false;
 });
 router.afterEach((a) => {
-  layout.value = a.meta.layout === false ? false : true;
+  layout.value = a.meta.layout !== false;
 });
 </script>
 
@@ -22,29 +22,29 @@ router.afterEach((a) => {
 </template>
 
 <style scoped lang="scss">
-  /* stylelint-disable-next-line import-notation */
-  @import '@/assets/styles/var.scss';
+/* stylelint-disable-next-line import-notation */
+@import '@/assets/styles/var.scss';
 
-  /* stylelint-disable-next-line media-query-no-invalid */
-  @media screen and (max-width: $screen-md) {
-    .content-wrapper {
-      grid-template-columns: auto !important;
-    }
-  }
-
+/* stylelint-disable-next-line media-query-no-invalid */
+@media screen and (max-width: $screen-md) {
   .content-wrapper {
-    flex: 1;
-    background: #f6f6f6;
+    grid-template-columns: auto !important;
   }
+}
 
-  #content {
-    overflow-x: hidden;
-    height: calc(100vh);
+.content-wrapper {
+  flex: 1;
+  background: #f6f6f6;
+}
 
-    &.layout{
-      height: var(--app-content-height);
-      box-sizing: border-box;
-      padding: var(--app-content-padding);
-    }
+#content {
+  overflow-x: hidden;
+  height: calc(100vh);
+
+  &.layout {
+    height: var(--app-content-height);
+    box-sizing: border-box;
+    padding: var(--app-content-padding);
   }
+}
 </style>
