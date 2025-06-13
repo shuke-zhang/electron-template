@@ -35,7 +35,6 @@ text {
   word-break: break-all; //在恰当的断字点进行换行
   overflow: hidden; //文字超出的进行隐藏
   text-overflow: ellipsis; //超出的文字用省略号表示
-  /* stylelint-disable-next-line value-no-vendor-prefix */
   display: -webkit-box; //将元素设为盒子伸缩模型显示
   -webkit-box-orient: vertical; //伸缩方向设为垂直方向
   -webkit-line-clamp: $line; //设定一共3行，超出的部分隐藏，并用省略号来表示
@@ -150,7 +149,6 @@ text {
   display: grid;
 }
 
-/* stylelint-disable-next-line at-rule-no-unknown */
 @for $i from 1 through 5 {
   .grid-cols-#{$i} {
     grid-template-columns: repeat(#{$i}, minmax(0, 1fr));

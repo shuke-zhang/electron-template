@@ -22,10 +22,8 @@ router.afterEach((a) => {
 </template>
 
 <style scoped lang="scss">
-/* stylelint-disable-next-line import-notation */
 @import '@/assets/styles/var.scss';
 
-/* stylelint-disable-next-line media-query-no-invalid */
 @media screen and (max-width: $screen-md) {
   .content-wrapper {
     grid-template-columns: auto !important;
