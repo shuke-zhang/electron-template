@@ -2,8 +2,8 @@
 import type { SerialPortType } from '@renderer/store/serialport';
 import type { FormInstance } from 'element-plus';
 
-import { format } from '@/utils';
 import { random } from 'lodash-es';
+import { format } from '@/utils';
 
 const parityOptions = [
   { value: 'none', label: '不校验' },
@@ -106,7 +106,8 @@ async function submitForm() {
   formRef.value?.validate()
     .then(() => {
       return sleep(random(200, 900));
-    }).then(() => {
+    })
+    .then(() => {
       if (!form.value.id) {
         addScale({
           ...form.value,
@@ -117,7 +118,8 @@ async function submitForm() {
           ...form.value,
         });
       }
-    }).then(() => {
+    })
+    .then(() => {
       messageSuccess('操作成功!');
       visible.value = false;
       formRef.value?.resetFields();
@@ -130,16 +132,30 @@ function cancel() {
 }
 
 interface RestaurantItem {
-  value: number;
-  label: string;
+  value: number
+  label: string
 }
 const _baudRate = [
-  110, 300, 600, 1200,
-  2400, 4800, 9600, 14400,
-  19200, 38400, 56000, 57600,
-  115200, 128000, 230400,
-  256000, 460800, 921600,
-  1000000, 2000000,
+  110,
+  300,
+  600,
+  1200,
+  2400,
+  4800,
+  9600,
+  14400,
+  19200,
+  38400,
+  56000,
+  57600,
+  115200,
+  128000,
+  230400,
+  256000,
+  460800,
+  921600,
+  1000000,
+  2000000,
 ];
 
 const baudRateList = ref<RestaurantItem[]>(_baudRate.map((value) => {
@@ -148,15 +164,15 @@ const baudRateList = ref<RestaurantItem[]>(_baudRate.map((value) => {
     label: `${value}`,
   };
 }));
-const querySearch = (queryString: string, cb: any) => {
+function querySearch(queryString: string, cb: any) {
   const results = queryString
     ? baudRateList.value.filter((e) => {
-      return e.label.startsWith(queryString);
-    })
+        return e.label.startsWith(queryString);
+      })
     : baudRateList.value;
   // call callback function to return suggestions
   cb(results);
-};
+}
 
 function handleSelect() {}
 getList();
@@ -181,19 +197,19 @@ getList();
             style="width: 199px;"
             @keydown.enter="getList()"
             @clear="getList"
-          ></el-input>
+          />
         </el-form-item>
 
         <el-form-item>
           <el-button type="primary" @click="getList()">
             <template #icon>
-              <i-ep-search></i-ep-search>
+              <i-ep-search />
             </template>
             搜索
           </el-button>
           <el-button @click="queryRef?.resetFields(), getList()">
             <template #icon>
-              <i-ep-refresh></i-ep-refresh>
+              <i-ep-refresh />
             </template>
             重置
           </el-button>
@@ -275,7 +291,7 @@ getList();
   >
     <el-form ref="formRef" :model="form" :rules="rules" label-width="80px">
       <el-form-item label="磅秤名称" prop="name">
-        <el-input v-model="form.name" placeholder="请输入磅秤名称"></el-input>
+        <el-input v-model="form.name" placeholder="请输入磅秤名称" />
       </el-form-item>
       <el-form-item label="串口路径" prop="path">
         <el-select v-model="form.path" placeholder="请选择串口路径">
@@ -285,7 +301,7 @@ getList();
             :disabled="item.disabled"
             :label="item.path"
             :value="item.path"
-          ></el-option>
+          />
         </el-select>
       </el-form-item>
       <el-form-item label="波特率" prop="baudRate">
@@ -300,14 +316,14 @@ getList();
       </el-form-item>
       <el-form-item label="校验位" prop="parity">
         <el-select v-model="form.parity" placeholder="请选择校验位">
-          <el-option v-for="option in parityOptions" :key="option.value" :label="option.label" :value="option.value"></el-option>
+          <el-option v-for="option in parityOptions" :key="option.value" :label="option.label" :value="option.value" />
         </el-select>
       </el-form-item>
       <el-form-item label="数据位" prop="dataBits">
-        <el-input v-model.number="form.dataBits" placeholder="请输入数据位"></el-input>
+        <el-input v-model.number="form.dataBits" placeholder="请输入数据位" />
       </el-form-item>
       <el-form-item label="停止位" prop="stopBits">
-        <el-input v-model.number="form.stopBits" placeholder="请输入停止位"></el-input>
+        <el-input v-model.number="form.stopBits" placeholder="请输入停止位" />
       </el-form-item>
     </el-form>
 
@@ -323,20 +339,20 @@ getList();
 </template>
 
 <style lang="scss" scoped>
-.form{
+.form {
   max-width: 400px;
   margin: 100px auto 0;
 }
 
-:deep(.el-input-number)  .el-input__inner{
+:deep(.el-input-number) .el-input__inner {
   text-align: left !important;
 }
 
-:deep(.el-card){
+:deep(.el-card) {
   box-sizing: border-box;
 }
 
-:deep(.el-card__body){
+:deep(.el-card__body) {
   height: 100%;
   box-sizing: border-box;
 }

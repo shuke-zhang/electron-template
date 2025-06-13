@@ -2,8 +2,8 @@
   "name": "sws",
   "version": "1.0.58",
   "description": "An Electron application with Vue and TypeScript",
-  "main": "./out/main/index.js",
   "license": "MIT",
+  "main": "./out/main/index.js",
   "scripts": {
     "version:patch": "npm version patch --force --no-git-tag-version",
     "format": "prettier --write .",

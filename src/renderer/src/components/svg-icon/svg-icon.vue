@@ -1,6 +1,10 @@
 <script lang="ts" setup>
 import type { CSSProperties } from 'vue';
 
+defineOptions({
+  name: 'SvgIcon',
+});
+
 const props = defineProps({
   prefix: {
     type: String,
@@ -18,10 +22,6 @@ const props = defineProps({
   size: {
     type: [String, Number] as PropType<string | number>,
   },
-});
-
-defineOptions({
-  name: 'SvgIcon',
 });
 
 const symbolId = computed(() => `#${props.prefix}-${props.name}`);

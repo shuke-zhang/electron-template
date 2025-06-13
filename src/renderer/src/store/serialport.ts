@@ -7,20 +7,20 @@ import { defineStore } from 'pinia';
 import { v4 as uuidV4 } from 'uuid';
 
 export interface SerialPortType {
-  name?: string;
-  path?: string;
-  baudRate?: number;
-  parity?: SerialPortOpenOptions<AutoDetectTypes>['parity'];
-  dataBits?: number;
-  stopBits?: number;
-  id?: string;
-  __loading: boolean;
+  name?: string
+  path?: string
+  baudRate?: number
+  parity?: SerialPortOpenOptions<AutoDetectTypes>['parity']
+  dataBits?: number
+  stopBits?: number
+  id?: string
+  __loading: boolean
 }
 
 export interface SerialPortData {
-  status: 'fail' | 'success';
-  value: any;
-  rawData: any;
+  status: 'fail' | 'success'
+  value: any
+  rawData: any
 }
 
 let _isAddListener = false;

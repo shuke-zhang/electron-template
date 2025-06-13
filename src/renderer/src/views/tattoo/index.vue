@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import type { OrderWeightModel } from '@renderer/model/order-weight';
 
-import TattooTable from './tattooTable.vue';
-
 import {
   Switch,
 } from '@element-plus/icons-vue';
+
 import { swapTattoo } from '@renderer/api/tattoo';
+import TattooTable from './tattooTable.vue';
 
 const lastTattoo = ref<OrderWeightModel>({});
 const newTattoo = ref<OrderWeightModel>({});
@@ -62,11 +62,11 @@ function handleSwap() {
     <div class="tattoo-table-container ">
       <el-row :gutter="20">
         <el-col :span="12">
-          <TattooTable v-model="lastTattoo"></TattooTable>
+          <TattooTable v-model="lastTattoo" />
         </el-col>
 
         <el-col :span="12">
-          <TattooTable v-model="newTattoo"></TattooTable>
+          <TattooTable v-model="newTattoo" />
         </el-col>
       </el-row>
     </div>
@@ -170,12 +170,12 @@ function handleSwap() {
 </template>
 
 <style scoped lang="scss">
-.tattoo-table-container{
+.tattoo-table-container {
   margin-top: 20px;
   height: 60vh;
 }
 
-.swap-container{
+.swap-container {
   margin: 0 auto;
   box-sizing: border-box;
   width: 500px;
@@ -192,7 +192,7 @@ function handleSwap() {
   }
 }
 
-.el-table .row-name{
+.el-table .row-name {
   // background-color: #ecf5ff !important;
   background-color: #de991a !important;
 }
