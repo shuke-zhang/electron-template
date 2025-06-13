@@ -1,0 +1,22 @@
+/* stylelint-disable-next-line import-notation */
+@import './var.scss';
+
+:root {
+  // --color-primary: #42b883;
+  // layout
+  --app-header-hight: 60px;
+  --app-footer-hight: 0px;
+  --app-content-height: calc(100vh - var(--app-header-hight) - var(--app-footer-hight));
+  --app-content-padding: 10px;
+  --app-side-bar-width: 200px;
+  // break-point
+  --app-screen-sm: #{$screen-sm};
+  --app-screen-md: #{$screen-md};
+  --app-screen-lg: #{$screen-lg};
+  --app-screen-xl: #{$screen-xl};
+  --app-screen-xxl: #{$screen-xxl};
+  --black-1: #333;
+  --black-2: #666;
+  --black-3: #999;
+  --black-4: #ccc;
+}

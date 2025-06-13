@@ -1,0 +1,30 @@
+{
+  "extends": "@electron-toolkit/tsconfig/tsconfig.web.json",
+  "include": [
+    "src/renderer/src/env.d.ts",
+    "src/renderer/src/**/*",
+    "src/renderer/types/**/*",
+    "src/renderer/src/**/*.vue",
+    "src/preload/*.d.ts"
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "noImplicitAny": true,
+    "isolatedModules":true,
+    "verbatimModuleSyntax": true,
+    "composite": true,
+    "paths": {
+      "@renderer/*": [
+        "src/renderer/src/*"
+      ],
+      "@/*": [
+        "src/renderer/src/*"
+      ]
+    },
+    "noEmit": true,
+    "types": [
+      "element-plus/global",
+      "unplugin-icons/types/vue",
+    ]
+  }
+}

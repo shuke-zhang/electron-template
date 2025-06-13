@@ -1,0 +1,86 @@
+#print {
+  display: none;
+  width: 100%;
+  height: 100%;
+
+  table {
+    width: 100%;
+    height: 100%;
+  }
+
+  table,
+  th {
+    margin: 0 auto;
+    text-align: center;
+    border: none;
+    height: 36px;
+  }
+
+  td {
+    border: 1px solid #000;
+    height: 36px;
+    text-align: center;
+    font-size: 10px;
+  }
+
+  // 过磅单打印
+  .weight-print-container {
+    width: 21cm;
+    height: 10.16cm;
+    display: flex;
+    margin: 0;
+    font-size: 14px;
+    padding-top: 25mm !important;
+
+
+
+    .weight-info {
+      width: calc(100% - 40%);
+
+      .meat-4 {
+        margin-left: 100px;
+      }
+
+      .meat-8 {
+        margin-left: 120px;
+      }
+
+      .meat-buyer {
+        margin-left: 290px;
+        word-wrap: break-word;
+        line-height: unset;
+        width: 120px;
+      }
+
+      .meat-inspection {
+        margin-left: 140px;
+      }
+
+      .meat-numAndWeight {
+        margin-right: 90px;
+      }
+    }
+
+  }
+
+}
+
+dialog #print {
+  display: block !important;
+}
+
+@media print {
+  @page {
+    margin: 0;
+  }
+
+
+
+  body > :not(#print) {
+    display: none !important;
+  }
+
+  #print {
+    display: block !important;
+  }
+}
