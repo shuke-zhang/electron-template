@@ -39,12 +39,12 @@
     0 20px 20px rgba(0 0 0 / 15%);
 }
 
-:deep(.el-card){
+:deep(.el-card) {
   box-sizing: border-box;
   height: 100%;
 }
 
-:deep(.el-card__body){
+:deep(.el-card__body) {
   height: 100%;
   box-sizing: border-box;
 }
