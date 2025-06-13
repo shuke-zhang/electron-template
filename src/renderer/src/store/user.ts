@@ -7,39 +7,19 @@ import _avater from '@/assets/images/avatar.png';
 import { asyncRoutes } from '@/router/routes/asyncRoutes';
 import { removeCacheToken, setCacheToken } from '@/utils/cache';
 
-const ALL_PERMISSION = '*:*:*';
 const SUPER_ADMIN = 'admin';
-export const SYSTEM_ORDER_WEIGHT_SETTING = 'system:orderWeight:setting';
 
 export const useUserStore = defineStore('user', () => {
-  const user = ref<UserModel | null>(null);
+  const userName = ref<UserModel | null>(null);
   const roles = ref<string[]>([]);
   const permissions = ref<string[]>([]);
-  const userAvater = computed(() => user.value?.avatar);
   const avater = ref(_avater);
-  const hasSettingPermission = computed(() => {
-    return hasPermission(SYSTEM_ORDER_WEIGHT_SETTING);
-  });
-
-  watchEffect(() => {
-    if (userAvater.value) {
-      const image = new Image();
-      image.src = APP_API_URL + userAvater.value;
-      image.onload = () => {
-        console.log('onload');
-        avater.value = image.src;
-      };
-      image.onerror = () => {
-      };
-    }
-  });
 
   return {
-    user,
+    userName,
     roles,
     permissions,
     avater,
-    hasSettingPermission,
     login,
     logout,
     getInfo,
@@ -50,7 +30,7 @@ export const useUserStore = defineStore('user', () => {
 
   async function login(...args: Parameters<typeof loginApi>) {
     const res = await loginApi(...args);
-    setCacheToken(res.token);
+    setCacheToken(res.data.accessToken);
   }
   function logout() {
     return new Promise<''>((resolve) => {
@@ -63,21 +43,8 @@ export const useUserStore = defineStore('user', () => {
 
   async function getInfo() {
     const res = await _getInfo();
-    user.value = res.user;
-    roles.value = res.roles;
-    permissions.value = res.permissions;
-    handleAsyncRoute();
-  }
-
-  function handleAsyncRoute() {
-    if (hasSettingPermission.value) {
-      for (let index = 0; index < asyncRoutes.length; index++) {
-        const element = asyncRoutes[index];
-        if (!router.hasRoute(element.name!)) {
-          router.addRoute(element);
-        }
-      }
-    }
+    userName.value = { username: res.data.username };
+    roles.value = res.data.roles;
   }
 
   function removeAsyncRoute() {
@@ -92,15 +59,13 @@ export const useUserStore = defineStore('user', () => {
   }
 
   function resetAllState() {
-    user.value = null;
+    userName.value = null;
     roles.value = [];
     permissions.value = [];
     removeCacheToken();
   }
 
   function hasPermission(requiredPermission: string): boolean {
-    if (permissions.value.includes(ALL_PERMISSION))
-      return true;
     return permissions.value.includes(requiredPermission);
   }
 

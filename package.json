@@ -27,6 +27,7 @@
     "@electron-toolkit/preload": "^3.0.0",
     "@electron-toolkit/utils": "^3.0.0",
     "@imengyu/vue3-context-menu": "^1.3.7",
+    "@shuke~/request": "^0.0.3",
     "@types/big.js": "^6.2.2",
     "@types/lodash-es": "^4.17.12",
     "@vueuse/core": "^10.7.2",

@@ -3,10 +3,10 @@ import { createBaseMessage } from './message';
 import { createBaseModal } from './modal';
 
 // Message
-export const messageSuccess = createBaseMessage('success');
-export const messageError = createBaseMessage('error');
-export const messageInfo = createBaseMessage('info');
-export const messageWarning = createBaseMessage('warning');
+export const showMessageSuccess = createBaseMessage('success');
+export const showMessageError = createBaseMessage('error');
+export const showMessageInfo = createBaseMessage('info');
+export const showMessageWarning = createBaseMessage('warning');
 
 // Confirm
 export const confirmSuccess = createBaseConfirm('success');

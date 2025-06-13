@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import type { OrderWeightAdd, OrderWeightModel } from '@/model/order-weight';
 import type { SlaughterConfigModel } from '@renderer/model/slaughter-config';
 import type { DateModelType, FormInstance } from 'element-plus';
+import type { OrderWeightAdd, OrderWeightModel } from '@/model/order-weight';
 
-import EditDialog from './editDialog.vue';
-import EmptyTest from './emptyTest.vue';
-
-import { format } from '@/utils/helpers/format';
-import { speak } from '@/utils/helpers/speak';
 import {
   Lock,
   Printer,
   Unlock,
 } from '@element-plus/icons-vue';
 import { addOrderWeight, invalidOrder, listOrderWeight } from '@renderer/api/order-weight';
+
 import { listSlaughterConfig } from '@renderer/api/slaughter-config';
 import dayjs from 'dayjs';
+import { format } from '@/utils/helpers/format';
+import { speak } from '@/utils/helpers/speak';
+import EditDialog from './editDialog.vue';
+import EmptyTest from './emptyTest.vue';
 
 const serialPortStore = useSerialPortStore();
 const { scaleList, activeScale } = storeToRefs(serialPortStore);
@@ -99,7 +99,8 @@ function handlePrint(row: OrderWeightModel) {
 }
 
 function getList() {
-  if (loading.value) return;
+  if (loading.value)
+    return;
   loading.value = true;
   const [
     startDate = '',
@@ -132,7 +133,8 @@ function getList() {
         };
       });
       total.value = res.total;
-    }).finally(() => {
+    })
+    .finally(() => {
       loading.value = false;
     });
 }
@@ -184,7 +186,8 @@ function getTimestampDate() {
  * 保存按钮 isEmptyTest-是否需要手动输入毛重
  */
 async function handleAdd(status: number) {
-  if (formLoading.value) return;
+  if (formLoading.value)
+    return;
   if (isEmptyTest) {
     formRef.value?.validate().then(() => {
       emptyTestForm.value = {
@@ -398,7 +401,7 @@ onBeforeUnmount(() => {
                   :key="item.value"
                   :value="item.value"
                   :label="item.label"
-                ></el-option>
+                />
               </el-select>
             </el-form-item>
           </el-col>
@@ -452,7 +455,7 @@ onBeforeUnmount(() => {
                 class="custom-input-number"
                 @focus.prevent="(event:any) => { event.preventDefault();event.target.blur() }"
                 @change="handleLWChange"
-              ></el-input-number>
+              />
             </el-form-item>
           </el-col>
 
@@ -473,7 +476,7 @@ onBeforeUnmount(() => {
                 class="custom-input-number"
                 @focus.prevent="(event:any) => { event.preventDefault();event.target.blur() }"
                 @change="handleLWChange"
-              ></el-input-number>
+              />
             </el-form-item>
           </el-col>
 
@@ -499,7 +502,7 @@ onBeforeUnmount(() => {
                 v-model="form.no"
                 placeholder="请输入刺青号"
                 @keyup.enter="handleAdd(0)"
-              ></el-input>
+              />
             </el-form-item>
           </el-col>
 
@@ -512,7 +515,7 @@ onBeforeUnmount(() => {
                 v-model="form.remark"
                 placeholder="请输入备注"
                 @keydown.enter="handleAdd(0)"
-              ></el-input>
+              />
             </el-form-item>
           </el-col>
 
@@ -521,12 +524,12 @@ onBeforeUnmount(() => {
               <div class="grid grid-cols-2 w-full">
                 <el-button type="primary" :loading="formLoading" @click="handleAdd(0)">
                   <template #icon>
-                    <i-ep-check></i-ep-check>
+                    <i-ep-check />
                   </template>
                   保存
                 </el-button>
                 <el-button plain type="primary" @click="handleAdd(1)">
-                  <i-ep-delete></i-ep-delete>
+                  <i-ep-delete />
                   无公害处理
                 </el-button>
               </div>
@@ -564,7 +567,7 @@ onBeforeUnmount(() => {
               clearable
               @keyup.enter="getList"
               @clear="getList"
-            ></el-input>
+            />
           </el-form-item>
           <el-form-item prop="no">
             <el-input
@@ -574,7 +577,7 @@ onBeforeUnmount(() => {
               clearable
               @keyup.enter="getList"
               @clear="getList"
-            ></el-input>
+            />
           </el-form-item>
 
           <el-form-item prop="typeId">
@@ -595,13 +598,13 @@ onBeforeUnmount(() => {
           <el-form-item>
             <el-button type="primary" @click="getList()">
               <template #icon>
-                <i-ep-search></i-ep-search>
+                <i-ep-search />
               </template>
               搜索
             </el-button>
             <el-button @click="queryRef?.resetFields(), getList()">
               <template #icon>
-                <i-ep-refresh></i-ep-refresh>
+                <i-ep-refresh />
               </template>
               重置
             </el-button>
@@ -689,7 +692,7 @@ onBeforeUnmount(() => {
                 plain style="display: block;" @click="handleEdit(row)"
               >
                 <template #icon>
-                  <i-ep-edit></i-ep-edit>
+                  <i-ep-edit />
                 </template>
                 编辑
               </el-button>
@@ -700,7 +703,7 @@ onBeforeUnmount(() => {
                 @click="handleInvalid(row)"
               >
                 <template #icon>
-                  <i-ep-delete></i-ep-delete>
+                  <i-ep-delete />
                 </template>
                 作废
               </el-button>
@@ -735,21 +738,22 @@ onBeforeUnmount(() => {
   <EmptyTest v-model:visible="emptyTestVisible" :empty-test-form="emptyTestForm" @success="submitSuccess" @close="close" />
 
   <!-- 打印 -->
-  <print-weight v-model="printVisible" :order="currentRow"></print-weight>
+  <print-weight v-model="printVisible" :order="currentRow" />
 </template>
 
 <style scoped lang="scss">
-.home{
+.home {
   display: grid;
   height: 100%;
   gap: 10px;
   box-sizing: border-box;
-  grid-template-rows: auto auto 1fr ;
+  grid-template-rows: auto auto 1fr;
+
   .el-form--inline .el-form-item{
     margin-right: 10px;
   }
-  >div{
-    background-color: #fff;
+
+  >    background-color: #fff;
   }
 
 }
@@ -770,11 +774,11 @@ onBeforeUnmount(() => {
 .grid-weight{
   gap: 10px;
 }
-
+edff
 .item-weight{
   background: #EDF0F4;
   height: 90px;
-  border-radius: 4px;
+  bo rder-radius: 4px;
 
   h3{
     margin: 0;

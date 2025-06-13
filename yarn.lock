@@ -1176,6 +1176,11 @@
     "@serialport/bindings-interface" "1.2.2"
     debug "4.3.4"
 
+"@shuke~/request@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@shuke~/request/-/request-0.0.3.tgz#470e1305b25178db03b29aed26890cd03790952b"
+  integrity sha512-MHDxyJbirtBToRLFoGCre/U0VH7HJuuMQ4M7G8/W78oUy6mudgwo2fMDkcfiihV3ULxl0fkhJGOorK3zURGWCg==
+
 "@sindresorhus/is@^4.0.0":
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-4.6.0.tgz#3c7c9c46e678feefe7a2e5bb609d3dbd665ffb3f"

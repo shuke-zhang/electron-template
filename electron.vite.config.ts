@@ -31,7 +31,7 @@ export default defineConfig(({ command, mode }) => {
       define: {
         __DEV__: `${command !== 'build'}`,
         APP_TITLE: JSON.stringify(env.VITE_APP_TITLE),
-        APP_API_URL: JSON.stringify(env.VITE_APP_API_URL),
+        APP_API_URL: JSON.stringify(env.VITE_API_URL),
         APP_STATIC_URL: JSON.stringify(env.VITE_APP_STATIC_URL),
       },
       plugins: [

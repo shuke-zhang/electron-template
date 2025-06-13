@@ -17,6 +17,7 @@ export default antfu({
     'no-console': 'off',
     'no-unused-vars': 'off', // 关闭 no-unused-vars 规则
     'ts/no-unused-expressions': 'off',
+    'unused-imports/no-unused-vars': 'off', // ← 新增这行！
     'vue/custom-event-name-casing': 'off',
     'node/prefer-global/process': 'off',
     // 确保与 Prettier 的分号设置一致

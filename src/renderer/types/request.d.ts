@@ -2,8 +2,9 @@
  * @description 基础数据类型
  */
 declare type ResponseResult<T extends AnyObject = AnyObject> = {
-  code: number;
-  msg: string;
+  code: number
+  msg: string
+  error: string
 } & T;
 
 /**
@@ -11,25 +12,25 @@ declare type ResponseResult<T extends AnyObject = AnyObject> = {
  *              注意！ rows 已经 是个 T[] 类型！
  */
 declare type ResponseList<T> = ResponseResult<{
-  total: number;
-  rows: T[];
+  total: number
+  rows: T[]
 }>;
 
 /**
  * @description 数据类型 包含在 data 里面
  */
 declare type ResponseData<T = any> = ResponseResult<{
-  data: T;
+  data: T
 }>;
 
 /**
  * @description 基础分页参数 pageNum pageSize
  */
 declare interface ListParamsBase {
-  pageNum: number;
-  pageSize: number;
-  orderByColumn?: string;
-  isAsc?: string;
+  pageNum: number
+  pageSize: number
+  orderByColumn?: string
+  isAsc?: string
 }
 /**
  * @description 基础分页参数查询

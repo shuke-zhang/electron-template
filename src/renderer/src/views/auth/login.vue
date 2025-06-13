@@ -22,6 +22,8 @@ function handleLogin() {
         password: form.value.password,
       })
       .then(() => {
+        console.log('登录成功');
+
         router.replace('/');
       })
       .finally(() => {

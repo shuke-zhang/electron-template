@@ -5,59 +5,45 @@ import { getCacheToken } from '@/utils/cache';
 export function createPermissionGuard(router: Router) {
   router.beforeEach(async (_to, _from, next) => {
     const userStore = useUserStore();
-    const appStore = useAppStore();
     if (getCacheToken()) {
-      if (!userStore.user) {
+      console.log('有token');
+
+      if (!userStore.userName) {
         try {
+          console.log('没有用户信息');
           await userStore.getInfo();
+          console.log('获取用户信息成功');
           next({
             path: _to.path,
             replace: true,
           });
         }
         catch (_error) {
+          console.log('获取用户信息失败');
           removeCacheToken();
+          console.log('移除token');
           next('/login');
         }
       }
-      if (_to.path !== '/setting') {
-        if (!appStore.appConfig?.lw || !appStore.appConfig?.productionLine) {
-          const t = userStore.hasSettingPermission ? '请先完成系统设置' : '请联系管理员完成系统设置';
-          confirmWarning(t, '提示', userStore.hasSettingPermission
-            ? {
-                cancelButtonText: '退出登录',
-                confirmButtonText: '去设置',
-              }
-            : {
-                confirmButtonText: '退出登录',
-                showCancelButton: false,
-              }).then(() => {
-            if (!userStore.hasSettingPermission) {
-              throw new Error('no SettingPermission');
-            }
-            else {
-              router.push('/setting');
-            }
-          }).catch(() => {
-            return userStore.logout()
-              .then(() => {
-                router.replace('/login');
-              });
-          });
-        }
-      }
       if (_to.path === '/login') {
+        console.log('有token，并且去的是登录页放行');
+
         next('/');
       }
       else {
+        console.log('有token，去的是其他页面放行');
+
         next();
       }
     }
     else {
+      console.log('没有token');
       if (_to.path === '/login') {
+        console.log('去登录页');
         next();
       }
       else {
+        console.log('没有token且去的是其他页面');
         next('/login');
       }
     }
