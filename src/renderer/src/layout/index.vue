@@ -14,7 +14,7 @@ router.beforeEach(() => {
   layout.value = false;
 });
 router.afterEach((a) => {
-  layout.value = a.meta.layout === false ? false : true;
+  layout.value = a.meta.layout !== false;
 });
 </script>
 
@@ -27,9 +27,9 @@ router.afterEach((a) => {
 </template>
 
 <style lang="scss" scoped>
-  .layout {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 </style>
