@@ -5,7 +5,7 @@ const router = useRouter();
 
 const form = ref({
   username: __DEV__ ? 'vben' : '',
-  password: __DEV__ ? '123456' : '',
+  password: __DEV__ ? '1234567' : '',
   captcha: true,
   selectAccount: 'vben',
 });

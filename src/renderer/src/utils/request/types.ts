@@ -25,6 +25,10 @@ export interface UserCustomConfig {
    * 是否开启响应错误提示
    */
   showMessageError?: boolean
+  /**
+   * 是否打开接口请求失败时错误提示
+   */
+  showErrorMsg?: boolean
 }
 
 export interface Canceler {
