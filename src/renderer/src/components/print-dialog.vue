@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { printableStatus, printerStatus } from './print-dialog.printer-status';
 
-const emit = defineEmits(['refresh']);
+defineEmits(['refresh']);
 
 const model = defineModel({
   type: Boolean,
@@ -64,7 +64,7 @@ async function printSubmit() {
     v-if="model"
     to="body"
   >
-    <div id="print-container"></div>
+    <div id="print-container" />
   </Teleport>
 
   <el-dialog
@@ -73,7 +73,7 @@ async function printSubmit() {
     title="打印预览"
   >
     <div class="flex-center">
-      <slot></slot>
+      <slot />
     </div>
 
     <template #footer>

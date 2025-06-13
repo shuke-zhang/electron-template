@@ -37,7 +37,8 @@ export const baseRoutes: RouteRecordRaw[] = [
       title: '404 not-find',
     },
     component: () => import('@/views/error/404.vue'),
-  }, {
+  },
+  {
     path: '/tattoo',
     name: 'tattoo',
     meta: {

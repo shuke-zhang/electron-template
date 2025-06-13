@@ -15,7 +15,7 @@ export function createPermissionGuard(router: Router) {
             replace: true,
           });
         }
-        catch (error) {
+        catch (_error) {
           removeCacheToken();
           next('/login');
         }
@@ -23,26 +23,27 @@ export function createPermissionGuard(router: Router) {
       if (_to.path !== '/setting') {
         if (!appStore.appConfig?.lw || !appStore.appConfig?.productionLine) {
           const t = userStore.hasSettingPermission ? '请先完成系统设置' : '请联系管理员完成系统设置';
-          confirmWarning(t, '提示', userStore.hasSettingPermission ? {
-            cancelButtonText: '退出登录',
-            confirmButtonText: '去设置',
-          } : {
-            confirmButtonText: '退出登录',
-            showCancelButton: false,
-          }).then(() => {
+          confirmWarning(t, '提示', userStore.hasSettingPermission
+            ? {
+                cancelButtonText: '退出登录',
+                confirmButtonText: '去设置',
+              }
+            : {
+                confirmButtonText: '退出登录',
+                showCancelButton: false,
+              }).then(() => {
             if (!userStore.hasSettingPermission) {
               throw new Error('no SettingPermission');
             }
             else {
               router.push('/setting');
             }
-          })
-            .catch(() => {
-              return userStore.logout()
-                .then(() => {
-                  router.replace('/login');
-                });
-            });
+          }).catch(() => {
+            return userStore.logout()
+              .then(() => {
+                router.replace('/login');
+              });
+          });
         }
       }
       if (_to.path === '/login') {

@@ -27,4 +27,4 @@ export const printerStatus = [
   { status: 16777216, info: 'PowerSave', desc: '打印机处于节能模式。' },
 ];
 
-export const printableStatus = [0, 8192, 16384, 32768, 65536, 1024,103];
+export const printableStatus = [0, 8192, 16384, 32768, 65536, 1024, 103];
