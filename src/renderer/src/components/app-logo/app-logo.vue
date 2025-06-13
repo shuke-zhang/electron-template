@@ -12,7 +12,7 @@
   align-items: center;
   text-decoration: none;
 
-  .logo-svg{
+  .logo-svg {
     height: 40px;
     width: 40px;
   }

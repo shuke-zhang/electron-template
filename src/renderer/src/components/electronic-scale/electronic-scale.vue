@@ -10,7 +10,8 @@ const serialPortStore = useSerialPortStore();
 const { scaleList, activeScale } = storeToRefs(serialPortStore);
 const router = useRouter();
 function getStatus(path?: string) {
-  if (!path) return undefined;
+  if (!path)
+    return undefined;
   return serialPortStore.getScaleMapValue(path);
 }
 
@@ -143,7 +144,7 @@ watch(open, () => {
 </template>
 
 <style scoped lang="scss">
-.electronic-scale-item{
+.electronic-scale-item {
   padding: 15px 40px 15px 24px;
   border: 1px solid var(--el-border-color);
   border-radius: 4px;
@@ -151,11 +152,11 @@ watch(open, () => {
   box-sizing: border-box;
   overflow: hidden;
 
-  &+.electronic-scale-item{
+  & + .electronic-scale-item {
     margin-left: 10px;
   }
 
-  &.active::after{
+  &.active::after {
     content: '当前选择';
     background-color: var(--el-color-primary);
     color: white;
@@ -168,32 +169,32 @@ watch(open, () => {
     font-size: 12px;
   }
 
-  &.active{
-    $primary-color:#409eff;
+  &.active {
+    $primary-color: #409eff;
 
     border-color: var(--el-color-primary);
-    background-color: rgba($primary-color, .1);
+    background-color: rgba($primary-color, 0.1);
 
-    strong{
+    strong {
       color: var(--el-color-primary);
     }
 
-    &.active::after{
+    &.active::after {
       opacity: 1;
     }
   }
 
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
 
-  p{
+  p {
     margin: 0;
     font-size: 12px;
     margin-right: 10px;
   }
 
-  strong{
+  strong {
     font-size: 1.8em;
     display: inline-block;
     width: 3em;

@@ -92,11 +92,11 @@ function handleCurrentChange(val: number) {
 
 <style scoped>
   .pagination-container {
-    background: #fff;
-    height: 32px;
-  }
+  background: #fff;
+  height: 32px;
+}
 
-  .pagination-container.hidden {
-    display: none;
-  }
+.pagination-container.hidden {
+  display: none;
+}
 </style>
