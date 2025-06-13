@@ -1,8 +1,11 @@
-import { AutoDetectTypes } from '@serialport/bindings-cpp';
+import type { AutoDetectTypes } from '@serialport/bindings-cpp';
+import type { BrowserWindow } from 'electron';
+import type { SerialPortOpenOptions } from 'serialport';
 import { ByteLengthParser } from '@serialport/parser-byte-length';
-import { BrowserWindow, ipcMain } from 'electron';
-import { SerialPort, SerialPortOpenOptions } from 'serialport';
+import { ipcMain } from 'electron';
+import { SerialPort } from 'serialport';
 import { getPrintersAsync, print } from './printer';
+import { Buffer } from 'buffer'
 
 function addSpaceEveryTwoChars(str: string) {
   let result = '';
@@ -151,7 +154,7 @@ export function initSerialPort(mainWindow: BrowserWindow) {
   });
 
   ipcMain.handle('print', async () => {
-    return print(mainWindow,);
+    return print(mainWindow);
   });
 
   // 打印机
@@ -164,7 +167,7 @@ function getValue(input: string) {
   const inputStr = input.toUpperCase().replace(/ /g, '');
   const startFlag = '022B';
   const i = inputStr.indexOf(startFlag);
-  if (i != -1) {
+  if (i !== -1) {
     const value = inputStr.slice(i + 4, i + 4 + 12);
     if (value.length < 12) {
       // 30 35 39 31 02 2B 30 30 30  情况下：
@@ -177,9 +180,9 @@ function getValue(input: string) {
     }
     if (value.length === 12) {
       const d_data = addSpaceEveryTwoChars(value).split(' ');
-      const result = d_data.map(e => parseInt(e, 16) - parseInt('30', 16)).join('');
+      const result = d_data.map(e => Number.parseInt(e, 16) - Number.parseInt('30', 16)).join('');
       const valuer = Number(result);
-      if (isNaN(valuer)) {
+      if (Number.isNaN(valuer)) {
         return null;
       }
       return valuer / 10;

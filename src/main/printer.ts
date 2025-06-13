@@ -26,7 +26,7 @@ export function print(mainWindow: BrowserWindow) {
         if (success) {
           resolve(JSON.stringify({
             success,
-            error: error ? error : false,
+            error: error || false,
           }));
         }
         else {

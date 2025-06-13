@@ -1,6 +1,6 @@
-import { getConfig, setConfig } from './utils';
-
 import { ipcMain } from 'electron';
+
+import { getConfig, setConfig } from './utils';
 
 export function initConfig() {
   ipcMain.handle('get-app-config', async () => {
