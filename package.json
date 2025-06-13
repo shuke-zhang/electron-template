@@ -1,6 +1,6 @@
 {
   "name": "sws",
-  "version": "1.0.58",
+  "version": "1.0.62",
   "description": "An Electron application with Vue and TypeScript",
   "license": "MIT",
   "main": "./out/main/index.js",

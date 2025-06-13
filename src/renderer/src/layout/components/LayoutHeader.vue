@@ -4,7 +4,6 @@ defineOptions({
 });
 
 const userStore = useUserStore();
-const { hasSettingPermission } = storeToRefs(userStore);
 const title = APP_TITLE;
 const router = useRouter();
 
@@ -39,22 +38,20 @@ function handleCommand(e: 'setting' | 'logout' | 'scale') {
           {{ title }}
         </router-link>
       </h3>
-      <el-dropdown v-if="userStore.user" @command="handleCommand">
+      <el-dropdown v-if="userStore.userName" @command="handleCommand">
         <div class="flex items-center user-info">
           <img class="avater" :src="userStore.avater">
-          <span style="margin-left: 10px;">{{ userStore.user?.userName?.toLocaleUpperCase() }}</span>
+          <span style="margin-left: 10px;">{{ userStore.userName }}</span>
           <el-icon class="el-icon--right">
             <i-ep-arrow-down />
           </el-icon>
         </div>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item v-if="hasSettingPermission" command="setting">
+            <el-dropdown-item command="setting">
               系统设置
             </el-dropdown-item>
-            <el-dropdown-item v-if="hasSettingPermission" command="scale">
-              磅称管理
-            </el-dropdown-item>
+
             <el-dropdown-item command="logout">
               退出登录
             </el-dropdown-item>

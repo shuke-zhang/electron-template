@@ -1,5 +1,5 @@
 appId: com.electron.app
-productName: 中禄屠宰场ERP生产管理称重系统
+productName: 舒克
 directories:
   buildResources: build
 files:
@@ -13,7 +13,7 @@ asarUnpack:
   - resources/**
 win:
   target: nsis
-  executableName: 中禄屠宰场ERP生产管理称重系统
+  executableName: 舒克
 nsis:
   oneClick: false
   perMachine: true
