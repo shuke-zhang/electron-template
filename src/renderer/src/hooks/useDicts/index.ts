@@ -1,43 +1,43 @@
 import type { FormatOptions } from '@/utils/helpers/format';
 
-import { type MaybeRefOrGetter, computed, reactive, toRaw, toRefs } from 'vue';
+import { computed, type MaybeRefOrGetter, reactive, toRaw, toRefs } from 'vue';
 
-export type DictTypes =
-| 'sys_production_line' // '生产线'
+export type DictTypes
+= | 'sys_production_line' // '生产线'
 // | 'sys_material_type' // 物料名称
 ;
 
 export interface OriginDictData {
   // value
-  id?: string;
-  dictCode?: number;
-  dictValue?: string;
+  id?: string
+  dictCode?: number
+  dictValue?: string
   // label
-  dictLabel?: string;
+  dictLabel?: string
   // name
-  dictType?: string;
+  dictType?: string
   // other
-  cssClass?: string;
-  listClass?: string;
-  isDefault?: string;
-  status?: string;
+  cssClass?: string
+  listClass?: string
+  isDefault?: string
+  status?: string
 
   // other label
-  title?: string;
-  name?: string;
-  label?: string;
+  title?: string
+  name?: string
+  label?: string
   // other value
-  value?: string | number;
-  code?: string | number;
-  key?: string | number;
+  value?: string | number
+  code?: string | number
+  key?: string | number
   //
-  remark?: string;
+  remark?: string
 }
 
 export interface DictData {
-  value: string;
-  label: string;
-  raw?: Partial<OriginDictData>;
+  value: string
+  label: string
+  raw?: Partial<OriginDictData>
 }
 
 function loadDict(dictType: string) {
@@ -47,9 +47,9 @@ function loadDict(dictType: string) {
 }
 
 interface UseDictsOptions {
-  isLazy?: boolean;
-  labelField?: keyof OriginDictData;
-  valueField?: keyof OriginDictData;
+  isLazy?: boolean
+  labelField?: keyof OriginDictData
+  valueField?: keyof OriginDictData
 }
 type DictsLoadingKey<DT extends DictTypes> = `${DT}_loading`;
 export type DictsRecord<DT extends DictTypes> = Record<DT, DictData[]>;
@@ -156,7 +156,7 @@ export function useDicts<DT extends DictTypes = DictTypes>(
   ) as DictsLoadingRecord<DT>;
   const { formatDictSync, formatDictComputed } = useDictFormatter(dictsData);
 
-  const isLazy = options.isLazy == undefined ? false : options.isLazy;
+  const isLazy = options.isLazy === undefined ? false : options.isLazy;
   const labelField = options.labelField || 'dictLabel';
   const valueField = options.valueField || 'dictValue';
 
@@ -166,7 +166,8 @@ export function useDicts<DT extends DictTypes = DictTypes>(
   }
 
   function loadDictItem(dt: DT) {
-    if (!dt) return;
+    if (!dt)
+      return;
     return loadDict(dt)
       .then((res) => {
         const result = res.data.map<DictData>((e) => {
@@ -204,7 +205,8 @@ export function useDicts<DT extends DictTypes = DictTypes>(
 
   function init() {
     dictTypes.forEach(initializeDict);
-    if (!isLazy) getDictData();
+    if (!isLazy)
+      getDictData();
   }
 
   function getDictData() {

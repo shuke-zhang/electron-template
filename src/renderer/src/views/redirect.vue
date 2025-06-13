@@ -6,5 +6,5 @@ router.replace({ path: `/${path}`, query });
 </script>
 
 <template>
-  <div></div>
+  <div />
 </template>

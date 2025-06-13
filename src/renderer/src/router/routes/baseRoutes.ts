@@ -31,12 +31,5 @@ export const baseRoutes: RouteRecordRaw[] = [
     },
     component: () => import('@/views/error/404.vue'),
   },
-  {
-    path: '/tattoo',
-    name: 'tattoo',
-    meta: {
-      title: '刺青调换',
-    },
-    component: () => import('@/views/tattoo/index.vue'),
-  },
+
 ];

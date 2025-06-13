@@ -10,12 +10,5 @@ export const asyncRoutes: RouteRecordRaw[] = [
     },
     component: () => import('@/views/setting/index.vue'),
   },
-  {
-    path: '/scale',
-    name: 'scale',
-    meta: {
-      title: '磅秤管理',
-    },
-    component: () => import('@/views/scale/index.vue'),
-  },
+
 ];
