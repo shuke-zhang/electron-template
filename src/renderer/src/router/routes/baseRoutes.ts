@@ -18,13 +18,6 @@ export const baseRoutes: RouteRecordRaw[] = [
     component: () => import('@/views/auth/login.vue'),
   },
   {
-    path: '/change-password',
-    meta: {
-      title: '修改密码',
-    },
-    component: () => import('@/views/auth/change-password.vue'),
-  },
-  {
     path: '/redirect/:path(.*)',
     meta: {
       title: 'redirect',

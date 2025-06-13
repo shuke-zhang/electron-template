@@ -1,11 +1,11 @@
 import type { UserModel } from '@/model/user';
 
-import { getInfo as _getInfo, loginPhone } from '@/api/login';
+import router from '@renderer/router';
+import { defineStore } from 'pinia';
+import { getInfo as _getInfo, loginApi } from '@/api/login';
 import _avater from '@/assets/images/avatar.png';
 import { asyncRoutes } from '@/router/routes/asyncRoutes';
 import { removeCacheToken, setCacheToken } from '@/utils/cache';
-import router from '@renderer/router';
-import { defineStore } from 'pinia';
 
 const ALL_PERMISSION = '*:*:*';
 const SUPER_ADMIN = 'admin';
@@ -48,8 +48,8 @@ export const useUserStore = defineStore('user', () => {
     hasRole,
   };
 
-  async function login(...args: Parameters<typeof loginPhone>) {
-    const res = await loginPhone(...args);
+  async function login(...args: Parameters<typeof loginApi>) {
+    const res = await loginApi(...args);
     setCacheToken(res.token);
   }
   function logout() {
@@ -99,12 +99,14 @@ export const useUserStore = defineStore('user', () => {
   }
 
   function hasPermission(requiredPermission: string): boolean {
-    if (permissions.value.includes(ALL_PERMISSION)) return true;
+    if (permissions.value.includes(ALL_PERMISSION))
+      return true;
     return permissions.value.includes(requiredPermission);
   }
 
   function hasRole(requiredRole: string): boolean {
-    if (roles.value.includes(SUPER_ADMIN)) return true;
+    if (roles.value.includes(SUPER_ADMIN))
+      return true;
     return roles.value.includes(requiredRole);
   }
 });

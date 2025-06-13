@@ -52,7 +52,7 @@ const serialport = {
 };
 
 export const logger = {
-  msg: (callback: Function) => {
+  msg: (callback: (...args: any[]) => void) => {
     ipcRenderer.on('log', (_event, ...value) => {
       callback(...value);
     });
@@ -91,4 +91,3 @@ else {
 }
 
 export type PPrint = typeof pprint;
-

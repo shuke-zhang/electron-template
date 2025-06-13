@@ -15,6 +15,7 @@ declare module 'vue' {
     IEpCheck: typeof import('~icons/ep/check')['default']
     IEpDelete: typeof import('~icons/ep/delete')['default']
     IEpEdit: typeof import('~icons/ep/edit')['default']
+    IEpKey: typeof import('~icons/ep/key')['default']
     IEpLock: typeof import('~icons/ep/lock')['default']
     IEpPlus: typeof import('~icons/ep/plus')['default']
     IEpRefresh: typeof import('~icons/ep/refresh')['default']

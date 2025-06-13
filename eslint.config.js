@@ -15,6 +15,7 @@ export default antfu({
   vue: true,
   rules: {
     'no-console': 'off',
+    'no-unused-vars': 'off', // 关闭 no-unused-vars 规则
     'ts/no-unused-expressions': 'off',
     'vue/custom-event-name-casing': 'off',
     'node/prefer-global/process': 'off',

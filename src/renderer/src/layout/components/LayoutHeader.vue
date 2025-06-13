@@ -16,7 +16,7 @@ async function handleLogout() {
   });
 }
 
-function handleCommand(e: 'setting' | 'logout' | 'scale' | 'change-password') {
+function handleCommand(e: 'setting' | 'logout' | 'scale') {
   switch (e) {
     case 'logout':
       handleLogout();
@@ -26,9 +26,6 @@ function handleCommand(e: 'setting' | 'logout' | 'scale' | 'change-password') {
       break;
     case 'scale':
       router.push('/scale');
-      break;
-    case 'change-password':
-      router.push('/change-password');
       break;
   }
 }
@@ -57,9 +54,6 @@ function handleCommand(e: 'setting' | 'logout' | 'scale' | 'change-password') {
             </el-dropdown-item>
             <el-dropdown-item v-if="hasSettingPermission" command="scale">
               磅称管理
-            </el-dropdown-item>
-            <el-dropdown-item command="change-password">
-              修改密码
             </el-dropdown-item>
             <el-dropdown-item command="logout">
               退出登录

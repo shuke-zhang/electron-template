@@ -4,8 +4,10 @@ import type { FormInstance } from 'element-plus';
 const router = useRouter();
 
 const form = ref({
-  username: __DEV__ ? 'admin' : '',
-  password: __DEV__ ? 'admin123' : '',
+  username: __DEV__ ? 'vben' : '',
+  password: __DEV__ ? '123456' : '',
+  captcha: true,
+  selectAccount: 'vben',
 });
 const _APP_TITLE = APP_TITLE;
 const userStore = useUserStore();
@@ -15,7 +17,10 @@ function handleLogin() {
   formRef.value?.validate().then(() => {
     loading.value = true;
     userStore
-      .login(form.value.username, form.value.password)
+      .login({
+        username: form.value.username,
+        password: form.value.password,
+      })
       .then(() => {
         router.replace('/');
       })
@@ -28,7 +33,7 @@ function handleLogin() {
 
 <template>
   <div class="h-full flex justify-center items-center flex-direction-column login-page">
-    <el-card :body-style="{ padding: '40px' }">
+    <el-card :body-style="{ padding: '40px' }" class="card">
       <h2>{{ _APP_TITLE }}</h2>
       <div class="login ">
         <el-form ref="formRef" :model="form">
@@ -68,8 +73,12 @@ function handleLogin() {
 </template>
 
 <style scoped lang="scss">
-h2{
+h2 {
   margin: 0;
+}
+
+.card {
+  border-radius: 18px;
 }
 
 .login {
@@ -78,9 +87,7 @@ h2{
   border: 1rpx solid red;
 }
 
-.login-page{
-  background-image: url("../../assets/images/login-bg.png");
-  background-repeat: no-repeat;
-  background-size: cover;
+.login-page {
+  background: linear-gradient(135deg, #f3eaff 0%, #e6f0ff 100%);
 }
 </style>
