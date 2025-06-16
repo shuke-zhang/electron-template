@@ -1,15 +1,15 @@
-import { URL, fileURLToPath } from 'node:url';
-import { resolve } from 'path';
-
-import { generatedSvgIconType } from './script/svgIcon';
+import { resolve } from 'node:path';
+import { fileURLToPath, URL } from 'node:url';
 
 import vue from '@vitejs/plugin-vue';
+
 import { defineConfig, externalizeDepsPlugin, loadEnv } from 'electron-vite';
 import AutoImport from 'unplugin-auto-import/vite';
 import IconsResolver from 'unplugin-icons/resolver';
 import Icons from 'unplugin-icons/vite';
 import Components from 'unplugin-vue-components/vite';
-import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
+import { generatedIcons } from './script/iconfont';
+import { generatedSvgIconType } from './script/svgIcon';
 
 export default defineConfig(({ command, mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
@@ -37,6 +37,7 @@ export default defineConfig(({ command, mode }) => {
       plugins: [
         generatedSvgIconType(isBuild),
         vue(),
+        generatedIcons(isBuild),
         AutoImport({
           include: [
             /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
@@ -73,14 +74,6 @@ export default defineConfig(({ command, mode }) => {
             globalsPropValue: true, // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
           },
         }),
-        // svg
-        createSvgIconsPlugin({
-          iconDirs: [fileURLToPath(new URL('./src/assets/icons', import.meta.url))],
-          svgoOptions: isBuild,
-          // default
-          symbolId: 'icon-[dir]-[name]',
-        }),
-
         Components({
           resolvers: [
             IconsResolver({

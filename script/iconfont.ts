@@ -1,13 +1,30 @@
-import fs from 'fs';
+import fs from 'node:fs';
 import path from 'node:path';
-
-import { debounce, logger } from './utils';
 
 import chokidar from 'chokidar';
 import ejs from 'ejs';
 
+type DebounceFunction = <T extends (...args: any[]) => any>(
+  func: T,
+  delay?: number
+) => (...args: Parameters<T>) => void;
+
+export const debounce: DebounceFunction = (func, delay = 1000) => {
+  let timer: NodeJS.Timeout;
+
+  return async (...args) => {
+    clearTimeout(timer);
+    return new Promise<void>((resolve) => {
+      timer = setTimeout(async () => {
+        await func(...args);
+        resolve();
+      }, delay);
+    });
+  };
+};
+
 const sourceDir = path.resolve(__dirname, '__iconfont');
-const targetDir = path.resolve(__dirname, '../src/components/iconfont/');
+const targetDir = path.resolve(__dirname, '../src/renderer/src/components/icon-font/');
 
 const ignored = [
   /\/src\/iconfont\/demo_index\.html$/,
@@ -25,19 +42,21 @@ function copyFile(sourceFile: string, targetFile: string): void {
     throw new Error(`Source file "${sourceFile}" does not exist.`);
   }
 
-  // 读取源文件内容
+  // 读取源文件内容 (作为Buffer处理二进制文件)
   const fileContent = fs.readFileSync(sourceFile);
 
-  // 写入目标文件
-  fs.writeFileSync(targetFile, fileContent);
+  // 写入目标文件 (Buffer是Uint8Array的子类，满足ArrayBufferView要求)
+  fs.writeFileSync(targetFile, fileContent as unknown as Uint8Array);
 }
 
 const cssDelimiter = [
-  '/* [', '] */',
+  '/* [',
+  '] */',
 ] as [string, string];
 
 const jsDelimiter = [
-  '\'/* [', '] */\'',
+  '\'/* [',
+  '] */\'',
 ] as [string, string];
 
 function getEjsData() {
@@ -60,19 +79,14 @@ function getEjsData() {
 }
 
 function getTemplateData(templateName: string, [openDelimiter, closeDelimiter]: [string, string] = cssDelimiter) {
-  try {
-    const ejsData = getEjsData();
-    const _templatePath = path.resolve(__dirname, './__template', templateName);
-    const source = fs.readFileSync(_templatePath).toString();
-    const template = ejs.compile(source, {
-      openDelimiter,
-      closeDelimiter,
-    });
-    return template(ejsData);
-  }
-  catch (error) {
-    throw error;
-  }
+  const ejsData = getEjsData();
+  const _templatePath = path.resolve(__dirname, './__template', templateName);
+  const source = fs.readFileSync(_templatePath).toString();
+  const template = ejs.compile(source, {
+    openDelimiter,
+    closeDelimiter,
+  });
+  return template(ejsData);
 }
 
 async function copy() {
@@ -91,18 +105,21 @@ async function copy() {
     );
 
     // // 字体
+
     await copyFile(
-      path.resolve(__dirname, '__iconfont', 'iconfont.ttf'),
-      path.resolve(targetDir, 'iconfont.ttf'),
+      path.resolve(__dirname, '__iconfont', 'iconfont.js'),
+      path.resolve(targetDir, 'iconfont.js'),
     );
   }
   catch (error) {
-    logger.error(`${error}`);
+    console.error(`${error}`);
   }
 }
 
-export function generatedIconfontType(isBuild: boolean) {
-  if (isBuild) return;
+export function generatedIcons(isBuild: boolean) {
+  if (isBuild)
+    return;
+
   const handler = debounce(copy);
 
   const watcher = chokidar.watch(sourceDir, {
@@ -110,8 +127,7 @@ export function generatedIconfontType(isBuild: boolean) {
   });
 
   watcher.on('all', async (type) => {
-    if (type != 'addDir' && type != 'unlink' && type != 'unlinkDir')
+    if (type !== 'addDir' && type !== 'unlink' && type !== 'unlinkDir')
       handler();
   });
 }
-

@@ -11,6 +11,7 @@ declare module 'vue' {
     BlankView: typeof import('./../src/components/blank-view/blank-view.vue')['default']
     Breadcrumb: typeof import('./../src/components/breadcrumb/breadcrumb.vue')['default']
     ElectronicScale: typeof import('./../src/components/electronic-scale/electronic-scale.vue')['default']
+    IconFont: typeof import('./../src/components/icon-font/icon-font.vue')['default']
     IEpArrowDown: typeof import('~icons/ep/arrow-down')['default']
     IEpCheck: typeof import('~icons/ep/check')['default']
     IEpDelete: typeof import('~icons/ep/delete')['default']

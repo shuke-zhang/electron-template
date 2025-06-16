@@ -1,16 +1,13 @@
+/* Generated IconType... */
 @font-face {
-  font-family: "iconfont"; /* Project id 4200318 */
-  src: url('iconfont.woff2?t=1750055157233') format('woff2'),
-       url('iconfont.woff?t=1750055157233') format('woff'),
-       url('iconfont.ttf?t=1750055157233') format('truetype');
+  font-family: "iconfont"; 
+  src: url('./iconfont.ttf?t=___') format('truetype');
 }
-
+  
 .iconfont {
   font-family: "iconfont" !important;
-  font-size: 16px;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  text-decoration: none;
+  text-align: center;
 }
 
 .icon-arrow-down-2:before {
@@ -648,4 +645,3 @@
 .icon-home:before {
   content: "\e61e";
 }
-

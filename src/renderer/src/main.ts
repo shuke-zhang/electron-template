@@ -1,17 +1,16 @@
-import './assets/styles/index.scss';
-import 'element-plus/dist/index.css';
-import '@imengyu/vue3-context-menu/lib/vue3-context-menu.css';
-
-import App from './App.vue';
-import router from './router';
-
-import { permissionDirective } from '@/directive';
 import ContextMenu from '@imengyu/vue3-context-menu';
 import ElementPlus from 'element-plus';
 import { createPinia } from 'pinia';
-import { createApp } from 'vue';
 
-import 'virtual:svg-icons-register';
+import { createApp } from 'vue';
+import { permissionDirective } from '@/directive';
+
+import App from './App.vue';
+import router from './router';
+import './assets/styles/index.scss';
+import 'element-plus/dist/index.css';
+import '@imengyu/vue3-context-menu/lib/vue3-context-menu.css';
+import './components/icon-font/iconfont';
 
 if (window.logger) {
   window.logger.msg(console.log);

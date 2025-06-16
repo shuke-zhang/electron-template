@@ -27,7 +27,8 @@ function handleSubmit() {
 <template>
   <el-card class="h-full border-box">
     <Breadcrumb :item-list="['系统设置']" />
-
+    <icon-font name="keyboard-del" size="43" color="#ffd458" />
+    <icon-font name="bill-sheng-yi" size="43" color="#00ff37" />
     <div class="form">
       <el-form
         ref="formRef"
