@@ -1,11 +1,11 @@
 import type { AutoDetectTypes } from '@serialport/bindings-cpp';
 import type { BrowserWindow } from 'electron';
 import type { SerialPortOpenOptions } from 'serialport';
+import { Buffer } from 'node:buffer';
 import { ByteLengthParser } from '@serialport/parser-byte-length';
 import { ipcMain } from 'electron';
 import { SerialPort } from 'serialport';
 import { getPrintersAsync, print } from './printer';
-import { Buffer } from 'buffer'
 
 function addSpaceEveryTwoChars(str: string) {
   let result = '';
