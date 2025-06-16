@@ -54,7 +54,6 @@ const request = new HttpRequest<UserCustomConfig>(
     async response(_response) {
       cancelMap.delete(generateKey(_response.config));
       const config = _response.config as HttpRequestConfig<UserCustomConfig>;
-      console.log('今天是个好日子');
 
       // 返回原生响应
       if (config.getResponse) {
@@ -71,18 +70,17 @@ const request = new HttpRequest<UserCustomConfig>(
         // 返回登录页
         router.replace('/redirect/');
       }
-      console.log('接口失败111');
 
       const msg = responseData.msg || getSystemErrorMessage(responseData.code);
-      console.log('接口失败', config?.showErrorMsg, responseData.code !== 401 && config?.showErrorMsg);
 
       return handleError(msg, responseData.code !== 401 && config?.showErrorMsg);
     },
     responseError(error: any) {
-      if (error) {
-        const err = error?.errMsg || error?.msg || error?.message || '';
-        return handleError(err);
-      }
+      const config = error?.config as HttpRequestConfig<UserCustomConfig>;
+
+      const err = error?.errMsg || error?.msg || error?.message || '';
+
+      return handleError(err, config?.showErrorMsg);
     },
 
   },
@@ -128,7 +126,6 @@ export function removeAllPending() {
 }
 
 function handleError(msg: string, showErrorMsg = true) {
-  console.log('handleError', msg, showErrorMsg);
   if (showErrorMsg) {
     showMessageError(msg);
     throw new Error(msg);

@@ -24,6 +24,5 @@ export function loginApi(data:
     url: '/auth/login',
     data,
     withToken: false,
-    showErrorMsg: false,
   });
 }
