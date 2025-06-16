@@ -9,7 +9,6 @@ import IconsResolver from 'unplugin-icons/resolver';
 import Icons from 'unplugin-icons/vite';
 import Components from 'unplugin-vue-components/vite';
 import { generatedIcons } from './script/iconfont';
-import { generatedSvgIconType } from './script/svgIcon';
 
 export default defineConfig(({ command, mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
@@ -35,7 +34,6 @@ export default defineConfig(({ command, mode }) => {
         APP_STATIC_URL: JSON.stringify(env.VITE_APP_STATIC_URL),
       },
       plugins: [
-        generatedSvgIconType(isBuild),
         vue(),
         generatedIcons(isBuild),
         AutoImport({

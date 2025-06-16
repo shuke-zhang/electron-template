@@ -26,6 +26,5 @@ declare module 'vue' {
     PrintWeight: typeof import('./../src/components/print-weight.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    SvgIcon: typeof import('./../src/components/svg-icon/svg-icon.vue')['default']
   }
 }
