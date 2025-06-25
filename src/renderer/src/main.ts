@@ -7,7 +7,7 @@ import App from './App.vue';
 
 import router from './router';
 import './style/tailwindcss.css';
-import './assets/styles/index.scss';
+// import 'tailwindcss/index';
 import 'element-plus/dist/index.css';
 import '@imengyu/vue3-context-menu/lib/vue3-context-menu.css';
 import './components/icon-font/iconfont';

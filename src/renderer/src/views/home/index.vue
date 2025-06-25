@@ -29,8 +29,89 @@ function handleSubmit() {
     <Breadcrumb :item-list="['系统设置']" />
     <icon-font name="keyboard-del" size="43" color="#ffd458" />
     <icon-font name="bill-sheng-yi" size="43" color="#00ff37" />
-    <div class="bg-red-500 text-color-red">
-      测试
+
+    <div class="grid grid-cols-2 gap-2 my-4">
+      <div class="p-2 rounded text-primary bg-primaryContainer flex-center">
+        primary
+      </div>
+      <div class="p-2 rounded text-error bg-onErrorContainer">
+        error
+      </div>
+      <div class="p-2 rounded text-onPrimaryContainer bg-primaryContainer">
+        primaryContainer
+      </div>
+      <div class="p-2 rounded text-onSecondary bg-secondary">
+        secondary
+      </div>
+      <div class="p-2 rounded text-onSecondaryContainer bg-secondaryContainer">
+        secondaryContainer
+      </div>
+      <div class="p-2 rounded text-onTertiary bg-tertiary">
+        tertiary
+      </div>
+      <div class="p-2 rounded text-onTertiaryContainer bg-tertiaryContainer">
+        tertiaryContainer
+      </div>
+      <div class="p-2 rounded text-error bg-onerror">
+        error
+      </div>
+      <div class="p-2 rounded text-onErrorContainer bg-errorContainer">
+        errorContainer
+      </div>
+      <div class="p-2 rounded text-onBackground bg-background">
+        background
+      </div>
+      <div class="p-2 rounded text-onSurface bg-surface">
+        surface
+      </div>
+      <div class="p-2 rounded text-onSurfaceVariant bg-surfaceVariant">
+        surfaceVariant
+      </div>
+      <div class="p-2 rounded text-inverseOnSurface bg-inverseSurface">
+        inverseSurface
+      </div>
+      <div class="p-2 rounded text-inversePrimary bg-inversePrimary">
+        inversePrimary
+      </div>
+      <div class="p-2 rounded text-onPrimaryFixed bg-primaryFixed">
+        primaryFixed
+      </div>
+      <div class="p-2 rounded text-onPrimaryFixedVariant bg-primaryFixedDim">
+        primaryFixedDim
+      </div>
+      <div class="p-2 rounded text-onSecondaryFixed bg-secondaryFixed">
+        secondaryFixed
+      </div>
+      <div class="p-2 rounded text-onSecondaryFixedVariant bg-secondaryFixedDim">
+        secondaryFixedDim
+      </div>
+      <div class="p-2 rounded text-onTertiaryFixed bg-tertiaryFixed">
+        tertiaryFixed
+      </div>
+      <div class="p-2 rounded text-onTertiaryFixedVariant bg-tertiaryFixedDim">
+        tertiaryFixedDim
+      </div>
+      <div class="p-2 rounded text-onSurfaceVariant bg-surfaceDim">
+        surfaceDim
+      </div>
+      <div class="p-2 rounded text-onSurface bg-surfaceBright">
+        surfaceBright
+      </div>
+      <div class="p-2 rounded text-onSurface bg-surfaceContainerLowest">
+        surfaceContainerLowest
+      </div>
+      <div class="p-2 rounded text-onSurface bg-surfaceContainerLow">
+        surfaceContainerLow
+      </div>
+      <div class="p-2 rounded text-onSurface bg-surfaceContainer">
+        surfaceContainer
+      </div>
+      <div class="p-2 rounded text-onSurface bg-surfaceContainerHigh">
+        surfaceContainerHigh
+      </div>
+      <div class="p-2 rounded text-onSurface bg-surfaceContainerHighest">
+        surfaceContainerHighest
+      </div>
     </div>
     <div class="form">
       <el-form
