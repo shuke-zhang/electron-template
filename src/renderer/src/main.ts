@@ -1,12 +1,12 @@
 import ContextMenu from '@imengyu/vue3-context-menu';
 import ElementPlus from 'element-plus';
 import { createPinia } from 'pinia';
-
 import { createApp } from 'vue';
 import { permissionDirective } from '@/directive';
-
 import App from './App.vue';
+
 import router from './router';
+import './style/tailwindcss.css';
 import './assets/styles/index.scss';
 import 'element-plus/dist/index.css';
 import '@imengyu/vue3-context-menu/lib/vue3-context-menu.css';

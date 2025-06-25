@@ -1,8 +1,8 @@
 import { resolve } from 'node:path';
 import { fileURLToPath, URL } from 'node:url';
+import tailwindcss from '@tailwindcss/vite';
 
 import vue from '@vitejs/plugin-vue';
-
 import { defineConfig, externalizeDepsPlugin, loadEnv } from 'electron-vite';
 import AutoImport from 'unplugin-auto-import/vite';
 import IconsResolver from 'unplugin-icons/resolver';
@@ -81,6 +81,7 @@ export default defineConfig(({ command, mode }) => {
           dirs: ['src/components'],
           dts: 'types/components.d.ts',
         }),
+        tailwindcss(),
         Icons({
           autoInstall: true,
         }),

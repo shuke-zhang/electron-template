@@ -29,6 +29,9 @@ function handleSubmit() {
     <Breadcrumb :item-list="['系统设置']" />
     <icon-font name="keyboard-del" size="43" color="#ffd458" />
     <icon-font name="bill-sheng-yi" size="43" color="#00ff37" />
+    <div class="bg-red-500 text-color-red">
+      测试
+    </div>
     <div class="form">
       <el-form
         ref="formRef"
@@ -56,7 +59,7 @@ function handleSubmit() {
           />
         </el-form-item>
 
-        <el-button class="w-full block" type="primary" style="margin-top: 10px;" :loading="loading" @click="handleSubmit">
+        <el-button class="block w-full" type="primary" style="margin-top: 10px;" :loading="loading" @click="handleSubmit">
           <template #icon>
             <i-ep-check />
           </template>
